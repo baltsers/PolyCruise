@@ -49,7 +49,6 @@ Eventually, 11 vulnerabilities in 5 projects below are validated to be exploitab
 ## [Pyo](https://github.com/belangeo/pyo)
 #### [Vulnerability-1]: Buffer overflow
 **Affected version**: version < < 1.03 <br>
-**Affected component**: The Api pyo.Server, with audio type "jack".
 **Description**: When using the Pyo library with audio type "jack", the server is initialized with an overlong (over 32) string, an error of buffer overflow happens and causes Python to crash down. This allows attackers to conduct DoS attacks by arbitrary constructing a overlong server name.<br>
 **Exploitation**: PoC: [boot_221.py](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-1/boot_221.py) and [Output](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-1/output.txt).
 #### [Vulnerability-2]: Buffer overflow
