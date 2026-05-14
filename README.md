@@ -1,66 +1,162 @@
-# Vulnerabilities detected by polycruise (cross-language DIFA)
-We evaluate polycruise on several popular open-source projects developed mainly in Python and C languages.
-Eventually, 11 vulnerabilities in 5 projects below are validated to be exploitable, and corresponding PoCs are attached.
+# PolyCruise
 
-## [Bounter](https://github.com/RaRe-Technologies/bounter): [Vendor]RaRe-Technologies
-#### [Vulnerability-1]: Null pointer reference
-**Affected version**: version < 1.10 <br>
-**Description**: With carefully constructed inputs (when the width of the hash bucket is set large enough), NULL pointer access could happen hence causing the Python to crash down. This allows attackers to conduct DoS attacks by inputing a huge width of hash bucket.<br>
-**Exploitation**: PoC: [cms_increase_47.py](https://github.com/baltsers/polycruise/blob/main/bounter/vulnerability-1/cms_increase_47.py) and [Output](https://github.com/baltsers/polycruise/blob/main/bounter/vulnerability-1/output.txt).<br>
-**CVE**: CVE-2021-41497
+Project artifact for:
 
-## [Cvxopt](https://github.com/cvxopt/cvxopt): [Vendor]cvxopt.org
-#### [Vulnerability-1]: Incomplete string comparison
-**Affected version**: version <= 1.2.6 <br>
-**Description**: Through carefully modify the name of a Capsule object, the PoC can easily bypass the validation in the **diag API** hence causing unexpected results (e.g., crash down during the execution of PoC). This allows attackers to conduct DoS attacks by construct fake Capsule objects. <br>
-**Exploitation**: PoC: [diag_193.py](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-1/diag_193.py) and [Output](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-1/output.txt).<br>
-**CVE**: CVE-2021-41500
-#### [Vulnerability-2]: Incomplete string comparison
-**Affected version**: version <= 1.2.6 <br>
-**Description**: Through carefully modify the name of a Capsule object, the PoC can easily bypass the validation in the **getfactor API** hence causing unexpected results (e.g., crash down during the execution of PoC). This allows attackers to conduct DoS attacks by construct fake Capsule objects. <br>
-**Exploitation**: PoC: [getfactor_193.py](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-2/getfactor_193.py) and [Output](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-2/output.txt).<br>
-**CVE**: CVE-2021-41500
-#### [Vulnerability-3]: Incomplete string comparison
-**Affected version**: version <= 1.2.6 <br>
-**Description**: Through carefully modify the name of a Capsule object, the PoC can easily bypass the validation in the **solve API** hence causing unexpected results (e.g., crash down during the execution of PoC). This allows attackers to conduct DoS attacks by construct fake Capsule objects. <br>
-**Exploitation**: PoC: [solve_193.py](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-3/solve_193.py) and [Output](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-3/output.txt).<br>
-**CVE**: CVE-2021-41500
-#### [Vulnerability-4]: Incomplete string comparison
-**Affected version**: version <= 1.2.6 <br>
-**Description**: Through carefully modify the name of a Capsule object, the PoC can easily bypass the validation in the **spsolve API** hence causing unexpected results (e.g., crash down during the execution of PoC). This allows attackers to conduct DoS attacks by construct fake Capsule objects. <br>
-**Exploitation**: PoC: [spsolve_193.py](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-4/spsolve_193.py) and [Output](https://github.com/baltsers/polycruise/blob/main/cvxopt/vulnerability-4/output.txt).<br>
-**CVE**: CVE-2021-41500
+**PolyCruise: A Cross-Language Dynamic Information Flow Analysis**
 
-## [Japronto](https://github.com/squeaky-pl/japronto): [Vendor]squeaky_pl
-#### [Vulnerability-1]: Unknown
-**Affected version**: version < 0.1.1 <br>
-**Description**: When passing byte stream context into the server API Response, the server runs abnormally, throws exceptions, and fails to deals with the following requests. This allows attackers to conduct DoS attacks. <br>
-**Exploitation**: PoC: [feed_183_client.py](https://github.com/baltsers/polycruise/blob/main/japronto/vulnerability-1/feed_183_client.py) & [feed_183_server.py](https://github.com/baltsers/polycruise/blob/main/japronto/vulnerability-1/feed_183_server.py) and [Output](https://github.com/baltsers/polycruise/blob/main/japronto/vulnerability-1/output.txt).
+- Original artifact URL: <https://bitbucket.org/wsucailab/polycruise/>
+- Imported via `pubs2github` from the publications page
+- Downloader: `git` — Cloned https://bitbucket.org/wsucailab/polycruise.git (693 files)
 
-## [Numpy](https://github.com/numpy/numpy): [Vendor]numpy.org
-#### [Vulnerability-1]: Buffer overflow
-**Affected version**: version < 1.19 <br>
-**Description**: When loading a high-dimension array (larger than 32), a stack smashing error happens and causes the Python process to crash down. This allows attackers to conduct DoS attacks by carefully constructing a npy file.<br>
-**Exploitation**: PoC: [array_nd_18939.py](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-1/array_nd_18939.py) and [Output](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-1/output.txt).<br>
-**CVE**: CVE-2021-33430
-#### [Vulnerability-2]: Null pointer reference
-**Affected version**: version < 1.19 <br>
-**Description**: When constructing a loop to create high-dimension arrays repetitively, and keeping the references of the arrays effective, an error of NULL pointer access happens hence causing the Python to crash down. This allows attackers to conduct DoS attacks by repetitively creating and sort arrays.<br>
-**Exploitation**: PoC: [array_nil_19038.py](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-2/array_nil_19038.py) and [Output](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-2/output.txt).<br>
-**CVE**: CVE-2021-41495
-#### [Vulnerability-3]: Buffer overflow
-**Affected version**: version < 1.19 <br>
-**Description**: In the f2py module, when creating a high-dimension array through the **array API** (deliberately construct negative numbers in shape), an unexpected error occurs and causes Python to crash down. This allows attackers to conduct DoS attacks by carefully constructing an array with negative values in shape.<br>
-**Exploitation**: PoC: [array_attr_19000.py](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-3/array_attr_19000.py) and [Output](https://github.com/baltsers/polycruise/blob/main/numpy/vulnerability-3/output.txt).<br>
-**CVE**: CVE-2021-41496
-## [Pyo](https://github.com/belangeo/pyo)
-#### [Vulnerability-1]: Buffer overflow
-**Affected version**: version < < 1.03 <br>
-**Description**: When using the Pyo library with audio type "jack", the server is initialized with an overlong (over 32) string, an error of buffer overflow happens and causes Python to crash down. This allows attackers to conduct DoS attacks by arbitrary constructing a overlong server name.<br>
-**Exploitation**: PoC: [boot_221.py](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-1/boot_221.py) and [Output](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-1/output.txt).<br>
-**CVE**: CVE-2021-41498
-#### [Vulnerability-2]: Buffer overflow
-**Affected version**: version < < 1.03 <br>
-**Description**: After initializing a Pyo server, an arbitrary file name (length > 256) is passed to the **recstart API** and an error of segment fault happens hence causing Python to crash down. This allows attackers to conduct DoS attacks by deliberately passing on an overlong audio file name.<br>
-**Exploitation**: PoC: [restart_222.py](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-2/restart_222.py) and [Output](https://github.com/baltsers/polycruise/blob/main/pyo/vulnerability-2/output.txt).<br>
-**CVE**: CVE-2021-41499
+
+This repository was created automatically. The contents under this
+directory mirror what was downloaded from the original artifact link
+above; refer to that source for the authoritative version, licensing,
+and any updates.
+
+---
+
+## Original `README.md` (from the upstream artifact)
+
+# PolyCruise: A Cross-Language Dynamic Information Flow Analysis.
+
+
+# Introduction
+We present PolyCruise, a framework that enables holistic dynamic information flow analysis (DIFA) across heterogeneous languages hence security applications empowered by DIFA (e.g., vulnerability discovery) for multilingual software. PolyCruise combines a light language-specific analysis that computes symbolic dependencies in each language unit with a language-agnostic online data flow analysis guided by those dependencies, in a way that overcomes language heterogeneity.
+
+# Installation
+## 1. requiremtns
+#### 1.1 Setup the environment manually
+PolyCruise is tested on Ubuntu18.04, LLVM7.0 and Python3.7 (and Python3-dev).
+An avaiable package to install LLVM7.0 with support of gold plugin can be found [here](https://github.com/Daybreak2019/PCA/tree/master/llvm7).
+
+#### 1.2 Reuse the environment from docker image
+We build a [docker image](https://hub.docker.com/repository/docker/daybreak2019/polycruise/tags?page=1&ordering=last_updated) with all dependences ready.
+Please use the command ```docker pull daybreak2019/polycruise:1.1``` to pull the image to local storage.
+
+## 2. build PolyCruise
+After cloning the code from GitHub, using the following command to build the whole project.
+
+```cd PolyCruise && ./build.sh```
+
+## 3. Usage
+#### 3.1 Steps of applying PolyCruise on Python programs with C bindings.
+- S1: Rewrite python modules to SSA forms and collect function definitions in Python.
+Use pyinspect with '-c' (compile) and '-d' (destination) for SSA translation:
+```
+# gen all defs in the project
+python -m pyinspect -g <project-dir>
+# recompile and rewrite the project
+python -m pyinspect -c -d <project-dir>
+```
+
+- S2: Execute SDA on C bindings.
+
+S2-1: Generate LLVM-IR with clang. One way is to specify following environments to the 'setup.py' and saved as 'setup-sda.py':
+```
+os.environ["CC"]  = "clang -emit-llvm"
+os.environ["CXX"] = "clang"
+os.environ["LDSHARED"] = "clang -flto -shared"
+```
+
+S2-2: Build the whole project with 'setup-sda.py':
+```
+python setup-sda.py build
+```
+
+S2-3: Execute SDA.
+
+With specified criterions, we run SDA on all BCs (LLVM-IR) using following commands:
+```
+sda -dir ./build -pre=1
+BC_FILES=`find ./build -name *.preopt.bc`
+for bc in $BC_FILES
+do
+    sda -file $bc -criterion <your-path>/criterion.xml
+done
+```
+
+- S3: Instrument C bindings
+
+Specify following environments to the 'setup.py' and saved as 'setup-instrm.py'
+```
+os.environ["CC"]  = "clang -emit-llvm -Xclang -load -Xclang llvmSDIpass.so"
+os.environ["CXX"] = "clang -emit-llvm -Xclang -load -Xclang llvmSDIpass.so"
+os.environ["LDSHARED"] = "clang -flto -pthread -shared -lDynAnalyze"
+```
+Then install the project with instrumentation:
+```
+python setup-instrm.py install
+
+#after installation, we maintain a maping between the source to installing path
+find <install-path> -name "*.py" > "<your-path>/<your-project>.ini"
+python -m pyinspect -M <your-project>.ini <your-source-list>
+```
+
+- S4: Run the cases of the target:
+```
+difaEngine &
+python -m pyinspect -C <your-criterion.xml> -t <your-case> &
+```
+
+#### 3.2 Run PolyCruise on PyCBench
+To evaluation our approach, we developed a micro-benchmark called ![PyCBench](https://github.com/Daybreak2019/LDI/tree/master/PyCBench).
+
+To test PolyCruise on all the micro-benchmarks, please execute the following commands:
+```
+cd PolyCruise/PyCBench && ./RunTest.sh
+```
+
+-[Example-information leakage](https://github.com/Daybreak2019/PolyCruise/tree/master/PyCBench/DynamicInvocation/1_leak_PyClang):
+```
+[OUTPUT]:
+@@@@@@@@@@@@@@@@@@@[66][deleak]Reach sink,  EventId = 5 -- <Function:Getpasswd,  Inst:21> 
+                [G (7FFFF7E700E3,0)] [P (E0AB40,0)] 
+                 ---->case: deleak Getpasswd 21 
+===> Add source [9:2]2540004000000007 -> 0x7ffff7f44cd0 
+Infor:  show->pwdtesthello
+
+@@@@@@@@@@@@@@@@@@@[66][deleak]Reach sink,  EventId = 5 -- <Function:Trace,  Inst:21> 
+                [U (v8,0)] [U (New,0)] 
+                 ---->case: deleak Trace 21 
+----> __exit__................, TracedStmts =  535
+@@@@@ Ready to exit, total memory: 1166724 (K)!
+Run successful.....
+entry CheckCases ... CaseResults
+LoadCases -> deleak:Getpasswd:21
+LoadCases -> deleak:Trace:21
+@@@@CASE-TEST PASS -> deleak-Getpasswd:21
+@@@@CASE-TEST PASS -> deleak-Trace:21
+@@@@@ GenSsPath -> Souece[2], Sink[2]......
+[1 ][deleak] Path: [F (Getpasswd,0)] [P (E0AB40,0)] 
+                [C]PwdInfo -> 
+                [C]Pass -> 
+                [C]Getpasswd: [F (printf,0)] 
+[2 ][deleak] Path: [F (Demo.__init__,0)] [A (value,0)] [U (v2,0)] 
+                [PY]DemoTr -> 
+                [PY]Demo.__init__ -> 
+                [PY]Trace: [F (print,0)] 
+```
+
+
+#### 3.3 Run PolyCruise on Real-world programs
+To run PolyCruise on a real-world program (e.g., [cvxopt](https://github.com/Daybreak2019/cvxopt)), we need to setup the environment (dependences solving) for it first, and
+this task can sometimes be tedious and time-consuming.
+
+When all dependences are sovled, we can follow the steps in Section 3.1 to prepare a script to integrate all necessary commands.  
+As an example, we provide a script of [cvxopt](https://github.com/Daybreak2019/PolyCruise/blob/master/Experiments/scripts/cvxopt/build.sh) for reference.
+Then we can use the following command to run PolyCruise on cvxopt:
+```
+# the parameter "build" indicate the script to compile and instrument cvxopt before running the tests
+cd PolyCruise/Experiments/scripts/cvxopt
+./build.sh build
+```
+
+## 4. Vulnerabilities detected on real-world programs
+
+PolyCruise enabled the discovery of the first batch of 8 cross-language CVEs: CVE-2021-33430, CVE-2021-34141, CVE-2021-41495, CVE-2021-41496, CVE-2021-41497, CVE-2021-41498, CVE-2021-41499, CVE-2021-41500.
+
+Refer to the [list of discovered vulnerabilities and PoCs here](https://github.com/Daybreak2019/PolyCruise/tree/master/Experiments/PoC) for details.
+
+        
+

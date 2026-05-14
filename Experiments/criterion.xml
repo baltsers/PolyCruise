@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<criterions code_directory="." entry_script="None">
+
+<!-- function: function name for the criteria defition (string), 
+     return: consider the call-site of the function as source (True, False),
+     local: consider the definition of a local variable as source (string or None)
+-->  
+<criterion> <function>module.getenv</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>os.getenv</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>fgetc</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>_IO_getc</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>fread</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>fgets</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>fscanf</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>getchar</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>receive</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>recv</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>module.Info</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>module.set_mode</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>load_image</function> <return>True</return> <local>None</local> </criterion>
+<criterion> <function>get_fg</function> <return>True</return> <local>None</local> </criterion>
+
+
+</criterions>

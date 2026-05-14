@@ -1,0 +1,9 @@
+execl
+execlp
+execle
+execv
+execvp
+execvpe
+system
+popen
+
