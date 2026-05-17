@@ -6,7 +6,7 @@ Project artifact for:
 
 - Original artifact URL: <https://bitbucket.org/wsucailab/polycruise/>
 - Imported via `pubs2github` from the publications page
-- Downloader: `git` — Cloned https://bitbucket.org/wsucailab/polycruise.git (693 files)
+- Downloader: `git` — existing repo/ (694 files)
 
 
 This repository was created automatically. The contents under this
